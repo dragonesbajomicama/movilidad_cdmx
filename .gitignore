@@ -1,0 +1,25 @@
+# OS generated files
+.trashes
+.Spotlight-V100
+.DS_Store
+.DS_Store?
+._*
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos diseño
+*.psd
+*.ai
+*.mov
+*.mp4
+*.indd
+
+# archivos temporales
+*.temp
+*.tmp
