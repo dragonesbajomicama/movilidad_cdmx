@@ -1,12 +1,12 @@
 :root{
-    --col-fondo: rgb(113, 141, 61);   
-    --col-texto: rgb(235, 220, 195);    /* Paleta de color */
-    --col-acento: rgb(255, 213, 159);
+    --col-fondo: rgb(255, 247, 230);   
+    --col-texto: rgb(248, 73, 102);    /* Paleta de color */
+    --col-acento: rgb(61, 151, 167);
 }
 
 /* _____ BASE _____ */
 html{
-    font-size: 170%;  /* al tamaño que aparece todo en relación al root */
+    font-size: 150%;  /* al tamaño que aparece todo en relación al root */
 }
 
 body{
@@ -22,22 +22,22 @@ body{
 
 
 h1{
-    font-family: "dilemma-variable", sans-serif;
-    font-size: 120px;
-    font-variation-settings: "ital" 0, "wght" 400;
+    font-family: "gridlite-pe-variable", sans-serif, "wght" 900;
+    font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
+    font-size: 500%;
     color: var(--col-texto);
     margin-bottom: 50px;
     transition: font-variation-settings 0.25s ease;
 }
 
 h1:hover{
-    font-variation-settings: "ital" 0, "wght" 900; /* efecto variable con hover */
+    font-variation-settings: "BACK" 1, "ELSH" 100, "RECT" 1, "wght" 600; /* efecto variable con hover */
 }
 
 h2{
     font-family: "mozaic-geo-variable", sans-serif;
-    font-size: 60px;
-    font-variation-settings: "wght" 650;
+    font-size: 150%;
+    font-variation-settings: "wght" 550;
     color: var(--col-acento);
     margin-bottom: 10px;        /* espacio abajo */
 }
@@ -50,14 +50,14 @@ main{
 
 /* _____ LINKS _____ */
 ul li::marker {      /* para cambiar bullets */
-  content: "❋ "; /* elegir carácter (unicode) */
-  font-size: 1em; /* tamaño personalizado */
+  content: "❇ "; /* elegir carácter (unicode) */
+  font-size: 1.1em; /* tamaño personalizado */
+
 }
 
 a{  /* acento */
-    
-    color: var(--col-acento);
     text-decoration: none;
+    color: var(--col-acento);
 }
 
 a:hover{
@@ -66,7 +66,9 @@ a:hover{
     opacity: 0.5;
 }
 
-
+a:active {
+    text-decoration: underline;   /* poner línea bajo texto con click (active) */
+}
 /* _____ FOOTER _____ */
 
 footer{

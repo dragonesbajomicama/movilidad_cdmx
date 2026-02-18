@@ -1,0 +1,77 @@
+:root{
+    --col-fondo: rgb(113, 141, 61);   
+    --col-texto: rgb(235, 220, 195);    /* Paleta de color */
+    --col-acento: rgb(255, 213, 159);
+}
+
+/* _____ BASE _____ */
+html{
+    font-size: 150%;  /* al tamaño que aparece todo en relación al root */
+}
+
+body{
+    background: var(--col-fondo);
+    color: var(--col-texto);
+    font-family: "mozaic-geo-variable", sans-serif;
+    line-height: 1.4;                                     /* interlineado */
+    padding: 50px;
+}
+
+/* _____ TIPOGRAFÍA _____ */
+
+
+
+h1{
+    font-family: "dilemma-variable", sans-serif;
+    font-size: 500%;
+    font-variation-settings: "ital" 0, "wght" 400;
+    color: var(--col-texto);
+    margin-bottom: 50px;
+    transition: font-variation-settings 0.25s ease;
+}
+
+h1:hover{
+    font-variation-settings: "ital" 0, "wght" 900; /* efecto variable con hover */
+}
+
+h2{
+    font-family: "mozaic-geo-variable", sans-serif;
+    font-size: 150%;
+    font-variation-settings: "wght" 650;
+    color: var(--col-acento);
+    margin-bottom: 10px;        /* espacio abajo */
+}
+
+/* _____ MAIN ______ */
+
+main{
+    max-width: 900px; /* delimitar el espacio que ocupa el texto */
+}
+
+/* _____ LINKS _____ */
+ul li::marker {      /* para cambiar bullets */
+  content: "❋ "; /* elegir carácter (unicode) */
+  font-size: 1em; /* tamaño personalizado */
+}
+
+a{  /* acento */
+    text-decoration: none;
+    color: var(--col-acento);
+}
+
+a:hover{
+    font-family: "mozaic-geo-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    opacity: 0.5;
+}
+
+a:active {
+    text-decoration: underline;   /* poner línea bajo texto con click (active) */
+}
+/* _____ FOOTER _____ */
+
+footer{
+    margin-top: 80px;      /* margen arriba del texto */
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
