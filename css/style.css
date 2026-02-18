@@ -1,0 +1,74 @@
+:root{
+    --color-fondo: rgb(113, 141, 61);
+    --color-texto: rgb(235, 220, 195);
+    --color-acento: rgb(255, 213, 159);
+}
+
+/* ===== BASE ===== */
+html{
+    font-size: 170%;
+}
+
+body{
+    background: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: "mozaic-geo-variable", sans-serif;
+    line-height: 1.6;
+    padding: 40px;
+}
+
+/* ===== TIPOGRAFÍA ===== */
+
+
+
+h1{
+    font-family: "dilemma-variable", sans-serif;
+    font-size: 100px;
+    font-variation-settings: "ital" 0, "wght" 400;
+    color: var(--color-texto);
+    margin-bottom: 10px;
+    transition: font-variation-settings 0.25s ease;
+}
+
+h1:hover{
+    font-variation-settings: "ital" 0, "wght" 900;
+}
+
+h2{
+    font-family: "mozaic-geo-variable", sans-serif;
+    font-variation-settings: "wght" 650;
+    color: var(--color-acento);
+    margin-bottom: 10px;
+}
+
+/* ===== MAIN ===== */
+
+main{
+    max-width: 680px;
+}
+
+/* ===== LINKS ===== */
+ul li::marker {
+  content: "❋ "; /* Use any string, emoji, or unicode character */
+  font-size: 1.3em; /* Customize size */
+}
+
+a{
+    
+    color: var(--color-acento);
+    text-decoration: none;
+}
+
+a:hover{
+    font-family: "mozaic-italic-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    opacity: 0.5;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+    margin-top: 80px;
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
