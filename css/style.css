@@ -1,74 +1,76 @@
 :root{
-    --color-fondo: rgb(113, 141, 61);
-    --color-texto: rgb(235, 220, 195);
-    --color-acento: rgb(255, 213, 159);
+    --col-fondo: rgb(113, 141, 61);   
+    --col-texto: rgb(235, 220, 195);    /* Paleta de color */
+    --col-acento: rgb(255, 213, 159);
 }
 
-/* ===== BASE ===== */
+/* _____ BASE _____ */
 html{
-    font-size: 170%;
+    font-size: 170%;  /* al tamaño que aparece todo en relación al root */
 }
 
 body{
-    background: var(--color-fondo);
-    color: var(--color-texto);
+    background: var(--col-fondo);
+    color: var(--col-texto);
     font-family: "mozaic-geo-variable", sans-serif;
-    line-height: 1.6;
-    padding: 40px;
+    line-height: 1.4;                                     /* interlineado */
+    padding: 50px;
 }
 
-/* ===== TIPOGRAFÍA ===== */
+/* _____ TIPOGRAFÍA _____ */
 
 
 
 h1{
     font-family: "dilemma-variable", sans-serif;
-    font-size: 100px;
+    font-size: 120px;
     font-variation-settings: "ital" 0, "wght" 400;
-    color: var(--color-texto);
-    margin-bottom: 10px;
+    color: var(--col-texto);
+    margin-bottom: 50px;
     transition: font-variation-settings 0.25s ease;
 }
 
 h1:hover{
-    font-variation-settings: "ital" 0, "wght" 900;
+    font-variation-settings: "ital" 0, "wght" 900; /* efecto variable con hover */
 }
 
 h2{
     font-family: "mozaic-geo-variable", sans-serif;
+    font-size: 60px;
     font-variation-settings: "wght" 650;
-    color: var(--color-acento);
-    margin-bottom: 10px;
+    color: var(--col-acento);
+    margin-bottom: 10px;        /* espacio abajo */
 }
 
-/* ===== MAIN ===== */
+/* _____ MAIN ______ */
 
 main{
-    max-width: 680px;
+    max-width: 900px; /* delimitar el espacio que ocupa el texto */
 }
 
-/* ===== LINKS ===== */
-ul li::marker {
-  content: "❋ "; /* Use any string, emoji, or unicode character */
-  font-size: 1.3em; /* Customize size */
+/* _____ LINKS _____ */
+ul li::marker {      /* para cambiar bullets */
+  content: "❋ "; /* elegir carácter (unicode) */
+  font-size: 1em; /* tamaño personalizado */
 }
 
-a{
+a{  /* acento */
     
-    color: var(--color-acento);
+    color: var(--col-acento);
     text-decoration: none;
 }
 
 a:hover{
-    font-family: "mozaic-italic-variable", sans-serif;
+    font-family: "mozaic-geo-variable", sans-serif;
     font-variation-settings: "wght" 400;
     opacity: 0.5;
 }
 
-/* ===== FOOTER ===== */
+
+/* _____ FOOTER _____ */
 
 footer{
-    margin-top: 80px;
+    margin-top: 80px;      /* margen arriba del texto */
     font-size: 0.85rem;
     opacity: 0.6;
 }
