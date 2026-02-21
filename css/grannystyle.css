@@ -10,7 +10,13 @@
 
 /* _____ BASE _____ */
 html{
-    font-size: 150%;
+    font-size: 130%;
+
+/* _____ MAIN ______ */
+main{
+    max-width: 1200px;
+}
+
 }
 
 body{
@@ -27,7 +33,7 @@ header{
     top: 0;
     background: var(--col-fondo);
     padding: 18px 0 22px 0;
-    margin-bottom: 10px;
+    margin-bottom: 100px;
     z-index: 1;
 }
 
@@ -98,10 +104,6 @@ h2{
 main section{ display: none; }
 main section.activa{ display: block; }
 
-/* _____ MAIN ______ */
-main{
-    max-width: 1200px;
-}
 
 /* _____ LISTAS / BULLETS _____ */
 ul li::marker {
@@ -124,6 +126,83 @@ a:hover{
 
 a:active {
     text-decoration: none;
+}
+
+/* ===== TABLA CALENDARIO (respira) ===== */
+#calendario{
+  /* opcional: que el calendario tenga más ancho que el resto */
+  max-width: 1200px;
+}
+
+/* si no quieres que TODO el calendario se ensanche,
+   borra el max-width de arriba y deja solo la tabla en 100% */
+
+#calendario table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 18px;
+  font-size: 0.9rem;         /* un poquito más pequeño para tablas */
+  line-height: 1.35;         /* aire vertical */
+}
+
+/* celdas con aire */
+#calendario th,
+#calendario td{
+  padding: 8px 8px;        /* <-- aquí nace la respiración */
+  vertical-align: top;
+  text-align: left;
+}
+
+/* encabezado legible */
+#calendario thead th{
+  color: var(--col-acento);
+  border-bottom: 2px solid var(--col-acento);
+  font-variation-settings: "wght" 650;
+}
+
+/* líneas suaves por fila */
+#calendario tbody td{
+  border-bottom: 1px solid rgba(61, 151, 167, 0.25);
+}
+
+/* zebra subtle para leer rápido */
+#calendario tbody tr:nth-child(even){
+  background: rgba(61, 151, 167, 0.06);
+}
+
+/* columnas cortas más “compactas” */
+#calendario th:nth-child(1),
+#calendario td:nth-child(1){
+  width: 8ch;                /* Semana */
+  white-space: nowrap;
+}
+
+#calendario th:nth-child(2),
+#calendario td:nth-child(2){
+  width: 15ch;               /* Fechas */
+  white-space: nowrap;
+}
+
+#calendario th:nth-child(3),
+#calendario td:nth-child(3){
+  width: 20ch;               /* Enfoque */
+}
+
+#calendario th:nth-child(5),
+#calendario td:nth-child(5){
+  width: 22ch;               /* Material */
+}
+
+/* que los textos largos rompan bien */
+#calendario td{
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+/* opcional pro: si la pantalla es chica, que no explote */
+#calendario{
+  overflow-x: auto;
 }
 
 /* _____ FOOTER _____ */
