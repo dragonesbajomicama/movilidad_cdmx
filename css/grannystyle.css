@@ -1,78 +1,134 @@
 :root{
-    --col-fondo: rgb(255, 247, 230);   
-    --col-texto: rgb(248, 73, 102);    /* Paleta de color */
-    --col-acento: rgb(61, 151, 167);
+    --col-fondo: rgb(255, 241, 220);     
+    --col-texto: rgb(36, 137, 200);    /* Paleta de color */
+    --col-acento: rgb(255, 149, 0);
+
+    /* CONTROLES TIPOGRÁFICOS */
+    --ff-base: "mozaic-geo-variable", sans-serif;
+    --ff-display: "gridlite-pe-variable", sans-serif;
 }
 
 /* _____ BASE _____ */
 html{
-    font-size: 150%;  /* al tamaño que aparece todo en relación al root */
+    font-size: 150%;
 }
 
 body{
     background: var(--col-fondo);
     color: var(--col-texto);
-    font-family: "mozaic-geo-variable", sans-serif;
-    line-height: 1.4;                                     /* interlineado */
+    font-family: var(--ff-base);   /* <-- control 1 */
+    line-height: 1.4;
     padding: 50px;
+}
+
+/* ===== HEADER + NAV ===== */
+header{
+    position: sticky;
+    top: 0;
+    background: var(--col-fondo);
+    padding: 18px 0 22px 0;
+    margin-bottom: 10px;
+    z-index: 1;
+}
+
+/* Nav horizontal */
+nav ul{
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    padding: 0;
+    margin: 0 0 8px 0;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Para que NO afecte al nav */
+nav ul li::marker{
+    content: "";
+}
+
+/* Links del nav con look de “pestañas” */
+nav a{
+    display: inline-block;
+    padding: 3px 10px;
+    border: 0px solid var(--col-acento);
+    border-radius: 999px;
+    color: var(--col-acento);
+    opacity: 0.8;
+}
+
+/* hover nav */
+nav a:hover{
+    font-variation-settings: "wght" 550;
+    opacity: 1;
+}
+
+/* estado activo del nav */
+nav a.activo{
+    opacity: 1;
+    text-decoration: none;
+    background: var(--col-acento);
+    color: var(--col-fondo);
 }
 
 /* _____ TIPOGRAFÍA _____ */
 
-
-
 h1{
-    font-family: "gridlite-pe-variable", sans-serif, "wght" 900;
+    font-family: var(--ff-display); /* <-- control 2 */
     font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
     font-size: 500%;
     color: var(--col-texto);
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     transition: font-variation-settings 0.25s ease;
 }
 
 h1:hover{
-    font-variation-settings: "BACK" 1, "ELSH" 100, "RECT" 1, "wght" 600; /* efecto variable con hover */
+    font-variation-settings: "BACK" 1, "ELSH" 100, "RECT" 1, "wght" 600;
 }
 
 h2{
-    font-family: "mozaic-geo-variable", sans-serif;
+    font-family: var(--ff-base);
     font-size: 150%;
     font-variation-settings: "wght" 550;
     color: var(--col-acento);
-    margin-bottom: 10px;        /* espacio abajo */
+    margin-bottom: 10px;
 }
 
-/* _____ MAIN ______ */
+/* ===== TABS ===== */
+main section{ display: none; }
+main section.activa{ display: block; }
 
+/* _____ MAIN ______ */
 main{
-    max-width: 900px; /* delimitar el espacio que ocupa el texto */
+    max-width: 1200px;
+}
+
+/* _____ LISTAS / BULLETS _____ */
+ul li::marker {
+  content: "❇ ";
+  font-size: 1.1em;
+  color: var(--col-acento);
 }
 
 /* _____ LINKS _____ */
-ul li::marker {      /* para cambiar bullets */
-  content: "❇ "; /* elegir carácter (unicode) */
-  font-size: 1.1em; /* tamaño personalizado */
-
-}
-
-a{  /* acento */
+a{
     text-decoration: none;
     color: var(--col-acento);
 }
 
+/* hover link (sin fijar familia) */
 a:hover{
-    font-family: "mozaic-geo-variable", sans-serif;
     font-variation-settings: "wght" 400;
     opacity: 0.5;
 }
 
 a:active {
-    text-decoration: underline;   /* poner línea bajo texto con click (active) */
+    text-decoration: none;
 }
-/* _____ FOOTER _____ */
 
+/* _____ FOOTER _____ */
 footer{
-    margin-top: 80px;      /* margen arriba del texto */
+    margin-top: 80px;
     font-size: 0.85rem;
     opacity: 0.6;
 }
