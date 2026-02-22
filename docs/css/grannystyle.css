@@ -1,185 +1,220 @@
-/* css/grannystyle.css */
-
 :root{
   --col-fondo: rgb(255, 241, 220);
   --col-texto: rgb(36, 137, 200);
-  --col-acento: rgb(255, 149, 0);
+  --col-acento: rgb(255, 149, 0);     /* burbuja principal */
+  --col-tinta: rgb(24, 24, 28);
 
   --ff-base: "mozaic-geo-variable", sans-serif;
   --ff-display: "gridlite-pe-variable", sans-serif;
 
-  /* variables ritmo de lectura */
+  --maxw: 1120px;
+
   --sp-1: 10px;
   --sp-2: 18px;
   --sp-3: 28px;
   --sp-4: 42px;
+  --sp-5: 64px;
 
+  --radius: 22px;
   --radius-pill: 999px;
+
+  --bdr: 2px solid rgba(36, 137, 200, 0.22);
+  --bdr-strong: 2px solid rgba(36, 137, 200, 0.35);
 }
 
 /* ===== BASE ===== */
-html{ font-size: 130%; }
+*{ box-sizing: border-box; }
+
+html{ font-size: 120%; }
 
 body{
+  margin: 0;
   background: var(--col-fondo);
   color: var(--col-texto);
   font-family: var(--ff-base);
-  line-height: 1.45;
-  padding: 50px;
+  line-height: 1.55;
   text-rendering: geometricPrecision;
 }
 
-main{
-  max-width: 1200px;
+/* ===== LAYOUT ===== */
+.container{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: var(--sp-4) var(--sp-3) var(--sp-5) var(--sp-3);
 }
 
-/* ritmo de lectura */
-p{ margin: 0 0 var(--sp-2) 0; max-width: 75ch; }
-ul, ol{ margin: 0 0 var(--sp-2) 0; padding-left: 1.2em; }
-li{ margin: 0.25em 0; }
-strong{ font-variation-settings: "wght" 650; }
+.stack > * + *{ margin-top: var(--sp-3); }
+
+.grid-2{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-2);
+}
+@media (min-width: 900px){
+  .grid-2{ grid-template-columns: 1fr 1fr; }
+}
 
 /* ===== HEADER + NAV ===== */
-header{
+.site-header{
   position: sticky;
   top: 0;
+  z-index: 20;
   background: var(--col-fondo);
-  padding: 18px 0 18px 0;
-  margin-bottom: var(--sp-3);
-  z-index: 10;
-  /* ayuda a que no “tire” texto al pasar tabs */
-  backdrop-filter: blur(0px);
+  border-bottom: 2px solid rgba(36, 137, 200, 0.2);
 }
 
-/* Nav horizontal */
-nav ul{
+.nav-principal{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: var(--sp-2) var(--sp-3) 0 var(--sp-3);
+}
+
+.nav-list{
   list-style: none;
   display: flex;
   gap: 8px;
   padding: 0;
-  margin: 10px 10px 10px 10px; /* FIX: unidades correctas */
+  margin: 0;
   flex-wrap: wrap;
   align-items: center;
 }
+.nav-list li::marker{ content: ""; }
 
-nav ul li::marker{ content: ""; }
-
-nav a{
+.nav-principal a{
   display: inline-block;
-  padding: 4px 11px;
+  padding: 6px 12px;
   border-radius: var(--radius-pill);
+  border: 2px solid rgba(36, 137, 200, 0.22);
   color: var(--col-acento);
-  opacity: 0.85;
+  opacity: 0.9;
   letter-spacing: 0.01em;
+  transition: transform 160ms ease, opacity 160ms ease, border-color 160ms ease, background 160ms ease;
 }
-
-nav a:hover{
+.nav-principal a:hover{
+  transform: translateY(-1px);
+  opacity: 1;
+  border-color: rgba(36, 137, 200, 0.45);
   font-variation-settings: "wght" 700;
-  opacity: 1;
 }
-
-nav a.activo{
+.nav-principal a.activo{
   opacity: 1;
-  text-decoration: none;
   background: var(--col-acento);
+  border-color: var(--col-acento);
   color: var(--col-fondo);
+  font-variation-settings: "wght" 800;
 }
 
-/* ===== SUBNAV (burbuja como nav principal, pero azul) ===== */
-#sistema .subnav ul{
-  list-style: none;
-  display: flex;
-  gap: 8px;
-  padding: 0;
-  margin: 12px 0 var(--sp-2) 0;
-  flex-wrap: wrap;
-  align-items: center;
+.hero{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: var(--sp-2) var(--sp-3) var(--sp-2) var(--sp-3);
 }
 
-#sistema .subnav a{
-  display: inline-block;
-  padding: 4px 11px;
-  border-radius: var(--radius-pill);
-  color: var(--col-texto);      /* azul */
+.kicker{
+  margin: 0 0 var(--sp-2) 0;
   opacity: 0.85;
-  letter-spacing: 0.01em;
 }
 
-#sistema .subnav a:hover{
-  font-variation-settings: "wght" 600;
-  opacity: 1;
-}
+/* ===== TABS ===== */
+main > section{ display: none; }
+main > section.activo,
+main > section.activa{ display: block; }
 
-#sistema .subnav a.sub-activo{
-  opacity: 1;
-  text-decoration: none;
-  background: var(--col-texto); /* burbuja azul */
-  color: var(--col-fondo);
-}
+/* Subtabs dentro de #sistema */
+#sistema .subtabs > section{ display: none; }
+#sistema .subtabs > section.sub-activa{ display: block; }
 
-/* ===== TIPOGRAFÍA ===== */
+/* ===== TYPO ===== */
 h1{
   font-family: var(--ff-display);
   font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
-  font-size: 500%;
+  font-size: clamp(3rem, 6vw, 4.6rem);
   color: var(--col-texto);
   margin: 0 0 var(--sp-1) 0;
   line-height: 0.95;
   transition: font-variation-settings 0.25s ease;
 }
-
 h1:hover{
   font-variation-settings: "BACK" 1, "ELSH" 100, "RECT" 1, "wght" 700;
 }
 
 h2{
   font-family: var(--ff-base);
-  font-size: 1.45rem;
-  font-variation-settings: "wght" 650;
+  font-size: 1.35rem;
+  font-variation-settings: "wght" 720;
   color: var(--col-acento);
-  margin: var(--sp-2) 0 var(--sp-1) 0;
-  line-height: 1.1;
-  margin-top: 3%;
-}
-
-/* subtítulos */
-h3{
-  font-family: var(--ff-base);
-  font-size: 1.1rem;
-  font-variation-settings: "wght" 650;
-  color: var(--col-texto);
-  margin: var(--sp-3) 0 var(--sp-1) 0;
+  margin: 0 0 var(--sp-1) 0;
   line-height: 1.15;
 }
 
-h4{
+h3{
   font-family: var(--ff-base);
-  font-size: 0.95rem;
-  font-variation-settings: "wght" 600;
+  font-size: 1.08rem;
+  font-variation-settings: "wght" 700;
   color: var(--col-texto);
-  margin: var(--sp-2) 0 var(--sp-1) 0;
+  margin: 0 0 var(--sp-1) 0;
+  line-height: 1.2;
+}
+
+p{ margin: 0 0 var(--sp-2) 0; max-width: 75ch; }
+p:last-child{ margin-bottom: 0; }
+
+strong{ font-variation-settings: "wght" 650; }
+
+.nota{
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+.pregunta{
+  font-size: 1.15rem;
+  line-height: 1.45;
+}
+
+.chips{
   opacity: 0.95;
 }
 
-/* hace que cada tab “respire” y se lea como entrega final */
-main section{
-  padding-bottom: var(--sp-3);
+/* ===== CARDS ===== */
+.card{
+  border: var(--bdr);
+  border-radius: var(--radius);
+  padding: var(--sp-3);
+  background: rgba(255, 255, 255, 0.35);
 }
 
-/* ===== TABS (tu sistema actual) ===== */
-/* tabs principales SOLO para hijos directos de main */
-main > section{ display: none; }
-main > section.activo,
-main > section.activa{ display: block; }
+.card-hero{
+  border-left: 8px solid rgba(255, 149, 0, 0.65);
+}
 
-/* Subtabs dentro de #sistema: apuntan al wrapper .subtabs */
-#sistema .subtabs > section{ display: none; }
-#sistema .subtabs > section.sub-activa{ display: block; }
+.card-focus{
+  border-left: 8px solid rgba(36, 137, 200, 0.55);
+}
 
-/* ===== LISTAS / BULLETS ===== */
-ul li::marker{
+.card-details summary{
+  cursor: pointer;
+  list-style: none;
+  font-variation-settings: "wght" 720;
+}
+.card-details summary::-webkit-details-marker{ display: none; }
+.card-details summary span{
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  border: var(--bdr-strong);
+  background: rgba(255, 255, 255, 0.25);
+}
+.card-details .details-body{
+  margin-top: var(--sp-2);
+}
+
+/* ===== LISTAS ===== */
+ul, ol{ margin: 0; padding-left: 1.2em; }
+li{ margin: 0.35em 0; }
+
+.bullets li::marker{
   content: "❇ ";
-  font-size: 1.1em;
+  font-size: 1.05em;
   color: var(--col-acento);
   font-variation-settings: "wght" 520;
 }
@@ -188,122 +223,112 @@ ul li::marker{
 a{
   text-decoration: none;
   color: var(--col-acento);
-  font-variation-settings: "wght" 600;
+  font-variation-settings: "wght" 650;
 }
-
 a:hover{
-  font-variation-settings: "wght" 450;
-  opacity: 0.55;
+  font-variation-settings: "wght" 500;
+  opacity: 0.7;
 }
 
-a:active{ text-decoration: none; }
+/* ===== SUBNAV (burbuja AZUL) ===== */
+.subnav{
+  padding: 0;
+}
 
-/* ===== TABLAS (general, para calendario + gantt) ===== */
+.subnav-list{
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.subnav-list li::marker{ content: ""; }
+
+#sistema .subnav a{
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  border: 2px solid rgba(36, 137, 200, 0.25);
+  color: var(--col-texto); /* azul */
+  opacity: 0.9;
+  transition: transform 160ms ease, opacity 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+#sistema .subnav a:hover{
+  transform: translateY(-1px);
+  opacity: 1;
+  border-color: rgba(36, 137, 200, 0.55);
+  font-variation-settings: "wght" 650;
+}
+#sistema .subnav a.sub-activo{
+  opacity: 1;
+  background: var(--col-texto); /* burbuja azul */
+  border-color: var(--col-texto);
+  color: var(--col-fondo);
+  font-variation-settings: "wght" 800;
+}
+
+/* ===== TABLAS ===== */
+.table-wrap{
+  overflow: auto;
+  border-radius: 18px;
+  border: 2px solid rgba(36, 137, 200, 0.2);
+  background: rgba(255, 255, 255, 0.35);
+}
+
 table{
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin-top: var(--sp-2);
-  margin-bottom: 5%;
+  border-collapse: collapse;
   font-size: 0.95rem;
   line-height: 1.35;
-
-  overflow-x: auto; /* (reemplaza el overflow-x en section) */
+  min-width: 720px;
 }
 
 th, td{
-  padding: 8px 8px;
+  padding: 10px 10px;
   vertical-align: top;
   text-align: left;
+  border-bottom: 1px solid rgba(61, 151, 167, 0.18);
 }
 
 thead th{
+  position: sticky;
+  top: 0;
+  background: rgba(255, 241, 220, 0.95);
   color: var(--col-acento);
   border-bottom: 2px solid var(--col-acento);
-  font-variation-settings: "wght" 650;
-}
-
-tbody td{
-  border-bottom: 1px solid rgba(61, 151, 167, 0.25);
+  font-variation-settings: "wght" 720;
 }
 
 tbody tr:nth-child(even){
   background: rgba(61, 151, 167, 0.06);
 }
 
-/* ===== GANTT (si usas class="gantt") ===== */
-table.gantt{
-  font-size: 0.9rem;
+/* Gantt (más compacto) */
+.table-narrow table{
+  min-width: 520px;
 }
-
+table.gantt{
+  min-width: 520px;
+}
+table.gantt td{
+  text-align: center;
+  font-variation-settings: "wght" 650;
+}
 table.gantt th:first-child,
 table.gantt td:first-child{
+  text-align: left;
   width: 26ch;
   white-space: nowrap;
 }
 
-table.gantt td{
-  text-align: center;
-}
-
-table.gantt td:not(:first-child){
-  min-width: 3.5ch;
-}
-
-/* convierte “●” en algo más contundente visualmente */
-table.gantt td{
-  font-variation-settings: "wght" 600;
-}
-
-/* ===== CRONOGRAMA ===== */
-#cronograma table{
-  width: 100%;
-}
-
-/* GANTT: más chico que la tabla y alineado a la izquierda */
-#cronograma table.gantt{
-  width: auto;                 /* no ocupa todo */
-  max-width: 850px;            /* más pequeño que tu tabla */
-  font-size: 1rem;             /* un poco más chico */
-  line-height: 1.2;
-  margin-top: var(--sp-1);
-  margin-left: 0;              /* alineado a la izquierda */
-  margin-right: auto;
-}
-
-/* celdas más compactas */
-#cronograma table.gantt th,
-#cronograma table.gantt td{
-  padding: 6px 8px;
-}
-
-/* primera columna “Fase” legible, pegada a la izquierda */
-#cronograma table.gantt th:first-child,
-#cronograma table.gantt td:first-child{
-  text-align: left;
-  white-space: nowrap;
-  width: 24ch;
-}
-
-/* semanas: alineadas a la izquierda (no centradas) */
-#cronograma table.gantt td{
-  text-align: left;
-}
-
-/* celdas de semana un poco más angostas */
-#cronograma table.gantt td:not(:first-child),
-#cronograma table.gantt th:not(:first-child){
-  min-width: 3ch;
-}
-
-/* marca de actividad más clara pero left */
-.gantt .on{
-  font-variation-settings: "wght" 750;
-}
-
 /* ===== FOOTER ===== */
-footer{
-  margin-top: var(--sp-4);
-  font-size: 0.85rem;
-  opacity: 0.65;
+.site-footer{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: var(--sp-4) var(--sp-3);
+  border-top: 2px solid rgba(36, 137, 200, 0.2);
+  font-size: 0.9rem;
+  opacity: 0.75;
 }
