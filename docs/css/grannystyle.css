@@ -13,8 +13,6 @@
   --sp-2: 18px;
   --sp-3: 28px;
   --sp-4: 42px;
-
-  --radius-pill: 999px;
 }
 
 /* ===== BASE ===== */
@@ -29,7 +27,23 @@ body{
   line-height: 1.45;
   padding: 50px;
   text-rendering: geometricPrecision;
+  position: relative;
 }
+
+/* micro-trama tipo atlas (muy sutil) */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(to right, rgba(36,137,200,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(36,137,200,0.06) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+header, main, footer{ position: relative; z-index: 1; }
 
 main{
   max-width: 1200px;
@@ -49,75 +63,73 @@ header{
   padding: 18px 0 18px 0;
   margin-bottom: var(--sp-3);
   z-index: 10;
-  /* ayuda a que no “tire” texto al pasar tabs */
-  backdrop-filter: blur(0px);
 }
 
 /* Nav horizontal */
-nav ul{
+header nav[aria-label="Índice"] ul{
   list-style: none;
   display: flex;
-  gap: 14px;                 /* + aire para subrayados */
+  gap: 14px;
   padding: 0;
   margin: 10px 10px 10px 10px;
   flex-wrap: wrap;
   align-items: center;
 }
 
-nav ul li::marker{ content: ""; }
+header nav[aria-label="Índice"] ul li::marker{ content: ""; }
 
-/* ===== LINKS BASE NAV (se sobreescriben luego por nav real) ===== */
-nav a{
-  display: inline-block;
-  padding: 4px 11px;
-  border-radius: var(--radius-pill);
-  color: var(--col-acento);
-  opacity: 0.85;
-  letter-spacing: 0.01em;
-}
+/* NAV principal: editorial + “puntada” */
+header nav[aria-label="Índice"] a{
+  background: transparent;
+  border: none;
+  border-radius: 0;
 
-nav a:hover{
-  font-variation-settings: "wght" 700;
-  opacity: 1;
-}
+  padding: 2px 0;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-size: 0.95rem;
 
-nav a.activo{
-  opacity: 1;
-  text-decoration: none;
-  background: var(--col-acento);
-  color: var(--col-fondo);
-}
-
-/* ===== SUBNAV (estructura; estilo final se define abajo) ===== */
-#sistema .subnav ul{
-  list-style: none;
-  display: flex;
-  gap: 14px;                 /* + aire para subrayados */
-  padding: 0;
-  margin: 12px 0 var(--sp-2) 0;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-#sistema .subnav a{
-  display: inline-block;
-  padding: 4px 11px;
-  border-radius: var(--radius-pill);
   color: var(--col-texto);
-  opacity: 0.85;
-  letter-spacing: 0.01em;
-}
-
-#sistema .subnav a:hover{
-  font-variation-settings: "wght" 600;
-  opacity: 1;
-}
-
-#sistema .subnav a.sub-activo{
-  opacity: 1;
+  opacity: 0.75;
+  position: relative;
   text-decoration: none;
-  background: var(--col-texto);
-  color: var(--col-fondo);
+}
+
+header nav[aria-label="Índice"] a:hover{ opacity: 1; }
+
+/* subrayado tipo costura (naranja) */
+header nav[aria-label="Índice"] a::after{
+  content:"";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -7px;
+  height: 2px;
+
+  background: repeating-linear-gradient(
+    to right,
+    rgba(255,149,0,0.00) 0 6px,
+    rgba(255,149,0,0.55) 6px 10px
+  );
+
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease, opacity 180ms ease;
+  opacity: 0.9;
+}
+
+header nav[aria-label="Índice"] a:hover::after{
+  transform: scaleX(0.45);
+}
+
+/* activo = puntada completa */
+header nav[aria-label="Índice"] a.activo{
+  opacity: 1;
+  font-variation-settings: "wght" 720;
+}
+
+header nav[aria-label="Índice"] a.activo::after{
+  transform: scaleX(1);
 }
 
 /* ===== TIPOGRAFÍA ===== */
@@ -139,7 +151,7 @@ h2{
   font-family: var(--ff-base);
   font-size: 1.45rem;
   font-variation-settings: "wght" 650;
-  color: var(--col-acento);
+  color: rgba(255,149,0,0.92);
   margin: var(--sp-2) 0 var(--sp-1) 0;
   line-height: 1.1;
   margin-top: 3%;
@@ -164,20 +176,100 @@ h4{
   opacity: 0.95;
 }
 
-/* hace que cada tab “respire” y se lea como entrega final */
+/* hace que cada tab “respire” */
 main section{
   padding-bottom: var(--sp-3);
 }
 
+/* separador “de costura” sutil al inicio de la sección activa */
+main > section.activa::before,
+main > section.activo::before{
+  content:"";
+  display:block;
+  width: 100%;
+  height: 10px;
+  margin: 0 0 var(--sp-3) 0;
+
+  background: repeating-linear-gradient(
+    to right,
+    rgba(36,137,200,0.00) 0 10px,
+    rgba(36,137,200,0.18) 10px 12px
+  );
+}
+
 /* ===== TABS (tu sistema actual) ===== */
-/* tabs principales SOLO para hijos directos de main */
 main > section{ display: none; }
 main > section.activo,
 main > section.activa{ display: block; }
 
-/* Subtabs dentro de #sistema: apuntan al wrapper .subtabs */
+/* Subtabs dentro de #sistema */
 #sistema .subtabs > section{ display: none; }
 #sistema .subtabs > section.sub-activa{ display: block; }
+
+/* ===== SUBNAV (Sistema): mismo lenguaje, AZUL ===== */
+#sistema .subnav ul{
+  list-style: none;
+  display: flex;
+  gap: 14px;
+  padding: 0;
+  margin: 12px 0 var(--sp-2) 0;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#sistema .subnav ul li::marker{ content: ""; }
+
+#sistema .subnav a{
+  background: transparent;
+  border: none;
+  border-radius: 0;
+
+  padding: 2px 0;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-size: 0.95rem;
+
+  color: var(--col-texto);
+  opacity: 0.7;
+  position: relative;
+  text-decoration: none;
+}
+
+#sistema .subnav a:hover{ opacity: 1; }
+
+/* puntada azul */
+#sistema .subnav a::after{
+  content:"";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -7px;
+  height: 2px;
+
+  background: repeating-linear-gradient(
+    to right,
+    rgba(36,137,200,0.00) 0 6px,
+    rgba(36,137,200,0.55) 6px 10px
+  );
+
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease, opacity 180ms ease;
+  opacity: 0.9;
+}
+
+#sistema .subnav a:hover::after{
+  transform: scaleX(0.45);
+}
+
+#sistema .subnav a.sub-activo{
+  opacity: 1;
+  font-variation-settings: "wght" 720;
+}
+
+#sistema .subnav a.sub-activo::after{
+  transform: scaleX(1);
+}
 
 /* ===== LISTAS / BULLETS ===== */
 ul li::marker{
@@ -187,7 +279,7 @@ ul li::marker{
   font-variation-settings: "wght" 520;
 }
 
-/* ===== LINKS (contenido, NO nav) ===== */
+/* ===== LINKS (contenido) ===== */
 main a{
   text-decoration: none;
   color: var(--col-acento);
@@ -201,7 +293,7 @@ main a:hover{
 
 main a:active{ text-decoration: none; }
 
-/* ===== TABLAS (general, para calendario + gantt) ===== */
+/* ===== TABLAS (general) ===== */
 table{
   width: 100%;
   border-collapse: separate;
@@ -253,11 +345,8 @@ table.gantt td:not(:first-child){
 }
 
 /* ===== CRONOGRAMA ===== */
-#cronograma table{
-  width: 100%;
-}
+#cronograma table{ width: 100%; }
 
-/* GANTT: más chico que la tabla y alineado a la izquierda */
 #cronograma table.gantt{
   width: auto;
   max-width: 850px;
@@ -280,9 +369,7 @@ table.gantt td:not(:first-child){
   width: 24ch;
 }
 
-#cronograma table.gantt td{
-  text-align: left;
-}
+#cronograma table.gantt td{ text-align: left; }
 
 #cronograma table.gantt td:not(:first-child),
 #cronograma table.gantt th:not(:first-child){
@@ -294,139 +381,4 @@ footer{
   margin-top: var(--sp-4);
   font-size: 0.85rem;
   opacity: 0.65;
-}
-
-/* =========================================================
-   NAV PRINCIPAL + SUBNAV: ESTILO TRAYECTO (anti "primaria")
-   (selectores correctos para tu HTML)
-========================================================= */
-
-/* NAV PRINCIPAL */
-header nav[aria-label="Índice"] a{
-  border-radius: 0 !important;
-  border: none !important;
-  background: transparent !important;
-
-  padding: 6px 2px !important;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-
-  color: var(--col-texto) !important;
-  opacity: 0.85;
-
-  position: relative;
-  transition: opacity 160ms ease;
-}
-
-header nav[aria-label="Índice"] a:hover{ opacity: 1; }
-
-/* línea trayecto */
-header nav[aria-label="Índice"] a::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -6px;
-  height: 2px;
-  background: rgba(36, 137, 200, 0.28);
-  transform: scaleX(0.18);
-  transform-origin: left;
-  transition: transform 180ms ease, height 180ms ease, background 180ms ease;
-}
-
-header nav[aria-label="Índice"] a:hover::after{
-  transform: scaleX(0.7);
-  background: rgba(255, 149, 0, 0.65);
-}
-
-/* activo */
-header nav[aria-label="Índice"] a.activo{
-  opacity: 1 !important;
-  font-variation-settings: "wght" 750;
-}
-
-header nav[aria-label="Índice"] a.activo::after{
-  transform: scaleX(1);
-  height: 4px;
-  background: rgba(255, 149, 0, 0.95);
-}
-
-header nav[aria-label="Índice"] a.activo::before{
-  content: "";
-  position: absolute;
-  left: -10px;
-  bottom: -10px;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(255, 149, 0, 0.95);
-}
-
-/* apaga relleno viejo por si gana */
-header nav[aria-label="Índice"] a.activo{
-  background: transparent !important;
-  border: none !important;
-}
-
-/* SUBNAV SISTEMA (azul) */
-#sistema .subnav a{
-  border-radius: 0 !important;
-  border: none !important;
-  background: transparent !important;
-
-  padding: 6px 2px !important;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-
-  color: var(--col-texto) !important;
-  opacity: 0.85;
-
-  position: relative;
-  transition: opacity 160ms ease;
-}
-
-#sistema .subnav a:hover{ opacity: 1; }
-
-#sistema .subnav a::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -6px;
-  height: 2px;
-  background: rgba(36, 137, 200, 0.28);
-  transform: scaleX(0.18);
-  transform-origin: left;
-  transition: transform 180ms ease, height 180ms ease, background 180ms ease;
-}
-
-#sistema .subnav a:hover::after{
-  transform: scaleX(0.7);
-  background: rgba(36, 137, 200, 0.65);
-}
-
-#sistema .subnav a.sub-activo{
-  opacity: 1 !important;
-  font-variation-settings: "wght" 750;
-  background: transparent !important;
-  border: none !important;
-}
-
-#sistema .subnav a.sub-activo::after{
-  transform: scaleX(1);
-  height: 4px;
-  background: rgba(36, 137, 200, 0.95);
-}
-
-#sistema .subnav a.sub-activo::before{
-  content: "";
-  position: absolute;
-  left: -10px;
-  bottom: -10px;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(36, 137, 200, 0.95);
 }
