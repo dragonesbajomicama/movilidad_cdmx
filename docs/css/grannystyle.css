@@ -1,8 +1,10 @@
 :root{
-  --col-fondo: rgb(255, 241, 220);
-  --col-texto: rgb(36, 137, 200);
-  --col-acento: rgb(255, 149, 0);     /* burbuja principal */
-  --col-tinta: rgb(24, 24, 28);
+ --col-fondo: #f4f3e7;
+  --col-tinta: #65a4b1;
+  --col-acento: #dc681a;
+  --col-texto: #1c538d;
+  --col-lima: #c4ca89;
+  --col-turquesa: #abc471;
 
   --ff-base: "mozaic-geo-variable", sans-serif;
   --ff-display: "gridlite-pe-variable", sans-serif;
