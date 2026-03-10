@@ -387,3 +387,11 @@ table.gantt td:first-child{
   letter-spacing: 0.02em;
   color: var(--col-acento);
 }
+.hero-img{
+  margin: 1.5rem auto;
+  width: 100%;
+  border-radius: var(--radius);
+  border: var(--radiu);
+  max-width: 42rem;
+  display: block;
+}
