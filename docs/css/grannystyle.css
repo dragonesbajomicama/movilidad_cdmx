@@ -415,6 +415,7 @@ tbody tr:nth-child(even){
   border-top: 0.12rem solid rgba(28, 83, 141, 0.14);
   box-shadow: 0 0 0 100vmax var(--footer-bg);
   clip-path: inset(0 -100vmax 0 -100vmax);
+  opacity: 60%;
 }
 
 .footer-inner{

@@ -8,7 +8,7 @@
   --ff-base: "mozaic-geo-variable", sans-serif;
   --ff-display: "gridlite-pe-variable", sans-serif;
 
-  --maxw: 70rem;
+  --maxw: 90rem;
 
   --sp-1: 0.625rem;
   --sp-2: 1rem;
@@ -55,14 +55,13 @@ a:hover{
 .hero{
   position: relative;
   min-height: 100vh;
-  padding: var(--sp-3);
+  padding: 0;
 
   background-image: url("../img/hero.png");
   background-repeat: no-repeat;
-  background-size: 95%;
-  background-position: center 40%;
+  background-size: clamp(58rem, 82vw, 92rem);
+  background-position: center 1%;
 }
-
 .hero::before{
   content: none;
 }
@@ -91,7 +90,7 @@ h1{
   font-size: clamp(1rem, 5vw, 10.8rem);
   line-height: 0.95;
   color: var(--col-texto);
-  margin-top: 58%;
+  margin-top: 25rem;
   text-align: center;
   font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
   transition: font-variation-settings 0.25s ease;
@@ -114,7 +113,7 @@ h1{
 
 .pregunta{
   margin: 0 auto;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   max-width: 36rem;
   font-size: 1.08rem;
   line-height: 1.45;
@@ -128,7 +127,7 @@ h1{
   justify-content: space-between;
   align-items: center;
   gap: var(--sp-2);
-  margin-top: 10%;
+  margin-top: 50%;
 }
 
 .hero-btn{
@@ -147,36 +146,20 @@ h1{
     
 }
 
-.hero-btn:hover{
-  transform: translateY(-1px);
-  opacity: 1;
-  border-color: var(--col-acento);
-}
-
-/* ===== CONTENIDO ===== */
-.kph__section{
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: var(--sp-4) var(--sp-3) var(--sp-5);
-}
-
-.kph__h2{
-  margin: 0 0 var(--sp-1) 0;
-  color: var(--col-acento);
-  font-size: 1.35rem;
-  font-variation-settings: "wght" 720;
-}
-
-.kph__p{
-  max-width: 75ch;
-}
 
 /* ===== FOOTER ===== */
+
 .site-footer{
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: var(--sp-4) var(--sp-3);
-  border-top: 2px solid rgba(36, 137, 200, 0.2);
+  width: 100%;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  padding: var(--sp-4) 0;
   font-size: 0.9rem;
   opacity: 0.75;
+}
+
+.site-footer__inner{
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 ;
 }
