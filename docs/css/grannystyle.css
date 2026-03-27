@@ -341,13 +341,14 @@ strong{
   background: rgba(199, 199, 199, 0.225);
   padding: 1rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   min-height: 12rem;
 }
 
 .translation-figure img{
-  display: block;
+  display:block;
   width: 100%;
   height: auto;
   max-height: 18rem;

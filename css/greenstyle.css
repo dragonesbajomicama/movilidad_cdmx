@@ -60,7 +60,7 @@ a:hover{
   background-image: url("../img/hero.png");
   background-repeat: no-repeat;
   background-size: clamp(58rem, 82vw, 92rem);
-  background-position: center 1%;
+  background-position: center 0%;
 }
 .hero::before{
   content: none;
