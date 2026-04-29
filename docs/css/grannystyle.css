@@ -4,12 +4,13 @@
   --col-acento: #dc681a;
   --col-tinta: #63949e;
   --col-lima: #9ba44c;
+  --col-negro: #1d1b16;
   --col-borde: rgba(28, 83, 141, 0.18);
 
   --ff-base: "mozaic-geo-variable", sans-serif;
   --ff-display: "gridlite-pe-variable", sans-serif;
 
-  --maxw: 80rem;
+  --maxw: 88rem;
   --content-pad: clamp(1rem, 2.2vw, 2.5rem);
 
   --sp-1: 0.55rem;
@@ -21,7 +22,6 @@
 
   --radius: 1.35rem;
   --radius-pill: 999rem;
-
   --bdr: 0.12rem solid var(--col-borde);
 
   --header-bg: #1c538d;
@@ -60,7 +60,7 @@ body::before{
   mask-size: 5.2rem auto;
   pointer-events: none;
   z-index: -3;
-  opacity: 30%;
+  opacity: 24%;
 }
 
 /* ===== ESTRUCTURA GENERAL ===== */
@@ -89,15 +89,27 @@ body::before{
   margin-top: var(--sp-3);
 }
 
-.grid-2{
+.grid-2,
+.grid-3,
+.grid-4{
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--sp-2);
 }
 
-@media (min-width: 62rem){
+@media (min-width: 56rem){
   .grid-2{
     grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-3{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 72rem){
+  .grid-4{
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -107,18 +119,19 @@ body::before{
   top: 0;
   z-index: 30;
   isolation: isolate;
-  background-color: var(--col-texto);
+  background-color: var(--header-bg);
+  border-bottom: 0.12rem solid rgba(236, 232, 220, 0.2);
 }
 
 .header-inner{
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.6rem;
+  gap: 0.75rem;
   padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
+  padding-bottom: 0.75rem;
 }
 
-@media (min-width: 72rem){
+@media (min-width: 76rem){
   .header-inner{
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: end;
@@ -131,9 +144,9 @@ body::before{
 
 .eyebrow{
   margin: 0 0 0.3rem 0;
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   opacity: 0.75;
   color: var(--col-fondo);
 }
@@ -141,8 +154,8 @@ body::before{
 .kicker{
   margin: 0.25rem 0 0 0;
   font-size: 1rem;
-  opacity: 0.9;
-  max-width: 28ch;
+  opacity: 0.92;
+  max-width: 30ch;
   color: var(--col-fondo);
 }
 
@@ -162,7 +175,7 @@ body::before{
   padding: 0;
 }
 
-@media (min-width: 72rem){
+@media (min-width: 76rem){
   .nav-list{
     justify-content: flex-end;
   }
@@ -172,9 +185,9 @@ body::before{
   display: inline-block;
   padding: 0.42rem 0.8rem;
   border-radius: var(--radius-pill);
-  border: 0.12rem solid rgba(141, 83, 28, 0.18);
+  border: 0.12rem solid rgba(236, 232, 220, 0.24);
   color: var(--col-texto);
-  background: rgba(255, 255, 255, 0.48);
+  background: rgba(236, 232, 220, 0.82);
   font-size: 0.95rem;
   transition:
     background 160ms ease,
@@ -224,10 +237,10 @@ h1{
 
 h2{
   margin: 0 0 0.55rem 0;
-  font-size: clamp(1.4rem, 2vw, 1.7rem);
+  font-size: clamp(1.45rem, 2.1vw, 1.95rem);
   line-height: 1.1;
   color: var(--col-acento);
-  font-variation-settings: "wght" 740;
+  font-variation-settings: "wght" 760;
 }
 
 h3{
@@ -235,12 +248,12 @@ h3{
   font-size: 1.08rem;
   line-height: 1.18;
   color: var(--col-texto);
-  font-variation-settings: "wght" 720;
+  font-variation-settings: "wght" 730;
 }
 
 p{
   margin: 0 0 var(--sp-2) 0;
-  max-width: 76ch;
+  max-width: 78ch;
 }
 
 p:last-child{
@@ -248,13 +261,13 @@ p:last-child{
 }
 
 strong{
-  font-variation-settings: "wght" 740;
+  font-variation-settings: "wght" 760;
 }
 
 .lead{
-  font-size: 1.22rem;
+  font-size: clamp(1.15rem, 1.8vw, 1.38rem);
   line-height: 1.35;
-  max-width: 34ch;
+  max-width: 42ch;
 }
 
 .pregunta{
@@ -271,26 +284,96 @@ strong{
   margin: 0 0 0.4rem 0;
   font-size: 0.82rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.055em;
   opacity: 0.72;
 }
 
+.poem{
+  font-size: 1.08rem;
+  line-height: 1.55;
+}
+
 /* ===== TARJETAS ===== */
-.card{
+.card,
+.mini-card{
   border: var(--bdr);
   border-radius: var(--radius);
   padding: clamp(1.15rem, 1.6vw, 1.7rem);
-  background: rgba(236, 233, 225, 0.78);
+  background: rgba(236, 232, 220, 0.78);
   backdrop-filter: blur(0.15rem);
   box-shadow: 0 0 0 0.02rem rgba(255,255,255,0.25) inset;
 }
 
 .card-hero{
-  border-left: 0.25rem solid rgba(220, 104, 26, 0.72);
+  border-left: 0.28rem solid rgba(220, 104, 26, 0.78);
 }
 
 .card-focus{
-  border-left: 0.25rem solid rgba(28, 83, 141, 0.52);
+  border-left: 0.28rem solid rgba(28, 83, 141, 0.58);
+}
+
+.mini-card{
+  min-height: 10rem;
+  background: rgba(255,255,255,0.34);
+}
+
+.big-word{
+  margin: 0 0 0.7rem 0;
+  color: var(--col-acento);
+  font-size: 1.45rem;
+  line-height: 1;
+  font-variation-settings: "wght" 820;
+}
+
+/* ===== FRANJAS CONCEPTUALES ===== */
+.quote-strip{
+  display: grid;
+  gap: 0.5rem;
+  border: 0.14rem solid rgba(220, 104, 26, 0.4);
+  border-radius: var(--radius);
+  padding: clamp(1.25rem, 2vw, 2rem);
+  background:
+    linear-gradient(90deg, rgba(220,104,26,0.12), rgba(99,148,158,0.12)),
+    rgba(255,255,255,0.3);
+}
+
+.quote-strip p{
+  margin: 0;
+  max-width: none;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  line-height: 1.2;
+}
+
+.rhythm-line{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 0.12rem dashed rgba(28, 83, 141, 0.28);
+  background: rgba(255,255,255,0.3);
+}
+
+.rhythm-line span{
+  display: inline-block;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-pill);
+  color: var(--col-fondo);
+  background: var(--col-texto);
+  font-size: 0.96rem;
+}
+
+.rhythm-line span:nth-child(even){
+  background: var(--col-acento);
+}
+
+.rhythm-line span:nth-child(3n){
+  background: var(--col-tinta);
+}
+
+.rhythm-line span:nth-child(5n){
+  background: var(--col-lima);
 }
 
 /* ===== TARJETAS CON FOTO ===== */
@@ -426,7 +509,7 @@ a:hover{
   border-radius: var(--radius-pill);
   border: 0.12rem solid rgba(103, 141, 28, 0.22);
   color: var(--col-texto);
-  background: rgba(255,255,255,0.42);
+  background: rgba(255,255,255,0.48);
   transition:
     background 160ms ease,
     border-color 160ms ease,
@@ -499,7 +582,7 @@ tbody tr:nth-child(even){
   border-top: 0.12rem solid rgba(28, 83, 141, 0.14);
   box-shadow: 0 0 0 100vmax var(--footer-bg);
   clip-path: inset(0 -100vmax 0 -100vmax);
-  opacity: 60%;
+  opacity: 70%;
 }
 
 .footer-inner{
@@ -524,7 +607,8 @@ tbody tr:nth-child(even){
     --content-pad: 1rem;
   }
 
-  .card{
+  .card,
+  .mini-card{
     padding: 1.15rem;
   }
 
@@ -538,6 +622,12 @@ tbody tr:nth-child(even){
 
   table{
     min-width: 34rem;
+  }
+
+  .nav-principal a,
+  .subnav a{
+    font-size: 0.9rem;
+    padding: 0.38rem 0.68rem;
   }
 }
 
