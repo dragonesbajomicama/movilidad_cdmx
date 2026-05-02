@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rutas interactivas — 5 km/h</title>
+  <link rel="stylesheet" href="https://use.typekit.net/hyo1win.css">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="hero">
+          <p class="eyebrow">Repositorio del proyecto</p>
+          <h1>5 km/h</h1>
+          <p class="kicker">Caminar el método</p>
+        </div>
+
+        <nav aria-label="Índice principal" class="nav-principal">
+          <ul class="nav-list">
+            <li><a href="https://dragonesbajomicama.github.io/movilidad_cdmx/docs/">Inicio</a></li>
+            <li><a href="https://dragonesbajomicama.github.io/movilidad_cdmx/docs/#concepto">Concepto</a></li>
+            <li><a href="https://dragonesbajomicama.github.io/movilidad_cdmx/docs/#metodo">Método</a></li>
+            <li><a href="https://dragonesbajomicama.github.io/movilidad_cdmx/docs/#ritmos">Ritmos</a></li>
+            <li><a class="activo" href="#rutas-partituras">Rutas</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container" id="rutas-partituras">
+      <section class="stack">
+        <article class="card card-hero intro-card">
+          <div>
+            <p class="section-tag">Partituras tejidas</p>
+            <h2 id="routeHeroTitle">Coyoacán</h2>
+          </div>
+        </article>
+
+        <section class="analysis-layout" aria-label="Lectura interactiva de caminata">
+          <div class="diagram-column">
+            <article class="card diagram-card word-block" aria-label="Matriz modular 5 km/h">
+              <div class="card-head">
+                <div>
+                  <p class="section-tag">Matriz de datos</p>
+                  <h3>5 km/h como registro</h3>
+                </div>
+                <p id="wordState" class="status-pill">Todos los agentes</p>
+              </div>
+              <div class="word-scroll">
+                <svg id="pixelWord" class="pixel-word" viewBox="0 0 4054.03 956.52" role="img" aria-label="5 km/h construido con módulos de datos"></svg>
+              </div>
+              
+              <p class="diagram-note">¿Quién modifica el paso?</p>         
+            <p>Los eventos van de pausa a desvío.</p></article>
+
+            <article class="card diagram-card walks-block">
+              <div class="card-head">
+                <div>
+                  <p class="section-tag">Partitura de movimiento</p>
+                  <h3 id="walkTitle" class="walk-title">Caminata 1 · Coyoacán</h3>
+                </div>
+              </div>
+
+              <div class="spiral-card">
+                <svg id="spiralScore" viewBox="0 0 620 620" role="img" aria-label="Partitura en espiral de la caminata"></svg>
+
+                <div class="diagram-legend action-legend" aria-label="Leyenda de acciones">
+                  <p class="section-tag">Acciones</p>
+                  <span><i class="glyph glyph-x"></i> Esperar</span>
+                  <span><i class="glyph glyph-dot"></i> Frenar</span>
+                  <span><i class="glyph glyph-square"></i> Acelerar</span>
+                  <span><i class="glyph glyph-triangle"></i> Desviarse</span>
+                </div>
+
+                <div id="spiralInsight" class="spiral-insight">
+                  <p class="section-tag">Lectura compartida</p>
+                  <p>La espiral muestra dónde el paso se detiene, acelera o cambia de ruta.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="side-panel" aria-label="Filtros y datos">
+            <section class="card side-section routes-panel">
+              <p class="section-tag">Caminata</p>
+              <div id="walkButtons" class="walk-buttons" aria-label="Seleccionar caminata"></div>
+            </section>
+
+            <section class="card side-section legend" aria-label="Filtros de agentes">
+              <p class="section-tag">Agente que modifica el paso</p>
+              <button class="legend-clear" id="clearAgent" type="button">Todos los agentes</button>
+              <button class="legend-item" type="button" data-agent="infraestructura"><span></span>Infraestructura</button>
+              <button class="legend-item" type="button" data-agent="vehiculos"><span></span>Vehículos</button>
+              <button class="legend-item" type="button" data-agent="humano"><span></span>Humano</button>
+              <button class="legend-item" type="button" data-agent="noHumano"><span></span>No humano</button>
+              <button class="legend-item" type="button" data-agent="decision"><span></span>Decisión propia</button>
+            </section>
+
+            <section class="card side-section walk-copy">
+              <p id="activeAgent" class="section-tag">Todos los agentes</p>
+              <div id="walkDiagnosis" class="diagnosis-card"></div>
+              <div id="agentExplanation" class="reading-card">
+                <strong>Lectura general</strong>
+                <p>Ciudad, cuerpos, objetos y decisiones aparecen juntos; el filtro pregunta quién toma el mando.</p>
+              </div>
+              <div id="walkStats" class="stats-grid"></div>
+            </section>
+          </aside>
+        </section>
+
+        <section class="comparative-section" aria-label="Síntesis crítica de caminatas">
+          <article class="card synthesis-card">
+            <div>
+              <p class="section-tag">Lectura transversal</p>
+              <h3>Caminar como negociación de mando</h3>
+            </div>
+            <p>No son rutas aisladas. Cada zona reparte distinto la obediencia, el cálculo y la decisión: importa menos la hora que el sistema de fuerzas que aparece al caminar.</p>
+          </article>
+
+          <div id="comparisonGrid" class="comparison-grid"></div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-bleed" aria-hidden="true"></div>
+      <div class="footer-inner">
+        <p>5 km/h — Caminar el método · Valentina Ruíz y Andrea Milanés · Partituras y datos</p>
+      </div>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
