@@ -328,7 +328,7 @@ function renderComparisonGrid() {
       selectedWalk = nextWalk;
       selectedAgents = [];
       render();
-      routeHeroTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      (walkTitle || routeHeroTitle)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
     card.addEventListener('click', selectWalkFromCard);
@@ -602,9 +602,8 @@ function renderSpiral() {
 function renderCopy() {
   const sequence = expandWalk(selectedWalk);
   const agents = getSelectedAgents();
-  routeHeroTitle.textContent = selectedWalk.place;
+  if (routeHeroTitle) routeHeroTitle.textContent = selectedWalk.place;
   document.documentElement.style.setProperty('--route-accent', routeAccents[selectedWalk.place] || '#dc681a');
-  document.documentElement.style.setProperty('--route-image', `url("${selectedWalk.image}")`);
   if (walkTitle) walkTitle.textContent = selectedWalk.title;
 
   activeAgent.textContent = getAgentLabelList(agents);
