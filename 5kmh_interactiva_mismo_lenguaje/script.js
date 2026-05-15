@@ -2,7 +2,7 @@ const pixelWord = document.querySelector('#pixelWord');
 const spiralScore = document.querySelector('#spiralScore');
 const walkButtons = document.querySelector('#walkButtons');
 const routeHeroTitle = document.querySelector('#routeHeroTitle');
-const walkTitle = document.querySelector('#walkTitle');
+const walkRouteMeta = document.querySelector('#walkRouteMeta');
 const walkStats = document.querySelector('#walkStats');
 const activeAgent = document.querySelector('#activeAgent');
 const wordState = document.querySelector('#wordState');
@@ -328,7 +328,7 @@ function renderComparisonGrid() {
       selectedWalk = nextWalk;
       selectedAgents = [];
       render();
-      (walkTitle || routeHeroTitle)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      routeHeroTitle?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
     card.addEventListener('click', selectWalkFromCard);
@@ -604,7 +604,7 @@ function renderCopy() {
   const agents = getSelectedAgents();
   if (routeHeroTitle) routeHeroTitle.textContent = selectedWalk.place;
   document.documentElement.style.setProperty('--route-accent', routeAccents[selectedWalk.place] || '#dc681a');
-  if (walkTitle) walkTitle.textContent = selectedWalk.title;
+  if (walkRouteMeta) walkRouteMeta.textContent = selectedWalk.title.split('·')[0].trim();
 
   activeAgent.textContent = getAgentLabelList(agents);
   wordState.textContent = getAgentLabelList(agents);

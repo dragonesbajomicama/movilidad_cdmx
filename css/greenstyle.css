@@ -1,5 +1,8 @@
 :root{
-  --col-fondo: #f3efe5;
+  /* Colores editables del sistema visual */
+  --page-bg: #f5ead4;
+
+  --col-fondo: var(--page-bg);
   --col-texto: #163b63;
   --col-acento: #d56a1f;
   --col-tinta: #6d8d82;
@@ -73,7 +76,7 @@ a:hover{
   background-repeat: no-repeat;
   background-size: max(132vw, 96rem);
   background-position: center -30rem;
-  border-bottom: 0.1rem solid rgba(243, 239, 229, 0.18);
+  border-bottom: 0.1rem solid rgba(238, 226, 208, 0.2);
   overflow: hidden;
 }
 
@@ -133,7 +136,7 @@ a:hover{
   max-width: 33rem;
   margin-top: 1rem;
   padding-left: 1.15rem;
-  border-left: 0.18rem solid rgba(243, 239, 229, 0.36);
+  border-left: 0.18rem solid rgba(238, 226, 208, 0.42);
 }
 
 .pregunta{
@@ -159,9 +162,9 @@ a:hover{
   justify-content: center;
   min-height: 2.7rem;
   padding: 0.55rem 1rem;
-  border: 0.1rem solid rgba(243, 239, 229, 0.26);
+  border: 0.1rem solid rgba(238, 226, 208, 0.32);
   border-radius: var(--radius-pill);
-  background: rgba(243, 239, 229, 0.1);
+  background: rgba(238, 226, 208, 0.1);
   color: var(--col-fondo);
   font-variation-settings: "wght" 700;
   transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
@@ -169,8 +172,8 @@ a:hover{
 
 .hero-btn:hover{
   transform: translateY(-0.08rem);
-  background: rgba(243, 239, 229, 0.16);
-  border-color: rgba(243, 239, 229, 0.4);
+  background: rgba(238, 226, 208, 0.18);
+  border-color: rgba(238, 226, 208, 0.42);
 }
 
 .hero-btn:focus-visible{
